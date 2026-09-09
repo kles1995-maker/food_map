@@ -180,7 +180,7 @@
 
     <!-- 頁籤按鈕 -->
     <div class="tab-container">
-  <button class="tab-btn active" data-target="kainan" onclick="switchTab('kainan')">開南周邊</button>
+  <button class="tab-btn" data-target="kainan" onclick="switchTab('kainan')">開南周邊</button>
   <button class="tab-btn" data-target="yuanze" onclick="switchTab('yuanze')">元智周邊</button>
   <button class="tab-btn" data-target="other" onclick="switchTab('other')">其他推薦</button>
 </div>
@@ -514,8 +514,8 @@
   </div>
 
   <script>
-  // 切換頁籤功能（保留隱藏、重置、顯示）
-  function switchTab(tabId) {
+  // 切換頁籤功能
+  function switchTab(tabId, targetElement) {
     // 隱藏所有內容
     const contents = document.querySelectorAll('.tab-content');
     contents.forEach(content => content.classList.remove('active'));
@@ -525,8 +525,17 @@
     buttons.forEach(btn => btn.classList.remove('active'));
 
     // 顯示目標內容與設定按鈕狀態
-    document.getElementById(tabId).classList.add('active');
-    event.currentTarget.classList.add('active');
+    const targetContent = document.getElementById(tabId);
+    if (targetContent) {
+      targetContent.classList.add('active');
+    }
+
+    if (targetElement) {
+      targetElement.classList.add('active');
+    }
+
+    // 💡 記憶關鍵：將當前點擊的 tabId 存進瀏覽器快取中
+    localStorage.setItem('activeTab', tabId);
   }
 
   // 自動抓取所有頁籤並計算數量
@@ -536,18 +545,29 @@
     buttons.forEach(btn => {
       const targetId = btn.getAttribute('data-target');
       if (targetId) {
-        // 自動算該區塊裡有幾張卡片
         const count = document.querySelectorAll(`#${targetId} .restaurant-card`).length;
-        // 自動保留原本的文字名稱，只更新/加上括號數字
         const originalName = btn.innerText.replace(/\s*\(\d+\)/, '');
         btn.innerText = `${originalName} (${count})`;
       }
     });
   }
 
-  // 網頁載入完成後執行
-  window.addEventListener('DOMContentLoaded', updateCounts);
+  // 網頁載入完成時執行
+  window.addEventListener('DOMContentLoaded', () => {
+    // 1. 計算所有店家數量
+    updateCounts();
+
+    // 2. 讀取上次儲存的頁籤，如果沒有紀錄就預設為 'kainan'
+    const savedTab = localStorage.getItem('activeTab') || 'kainan';
+    
+    // 3. 找到對應的按鈕並觸發切換
+    const targetBtn = document.querySelector(`.tab-btn[data-target="${savedTab}"]`);
+    if (targetBtn) {
+      switchTab(savedTab, targetBtn);
+    }
+  });
 </script>
+
 
 </body>
 </html>
