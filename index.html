@@ -180,8 +180,8 @@
 
     <!-- 頁籤按鈕 -->
     <div class="tab-container">
-      <button class="tab-btn active" onclick="switchTab('kainan')">開南周邊 (6)</button>
-      <button class="tab-btn" onclick="switchTab('yuanze')">元智周邊 (10)</button>
+      <button id="tab-btn-kainan" class="tab-btn active" onclick="switchTab('kainan')">開南周邊</button>
+      <button id="tab-btn-yuanze" class="tab-btn" onclick="switchTab('yuanze')">元智周邊</button>
     </div>
 
     <!-- ================= 開南周邊 ================= -->
@@ -205,7 +205,7 @@
       </div>
 
       <div class="restaurant-card">
-        <img class="card-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="星廚饌—大竹店">
+        <img class="card-img" src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlHcSz_-3xWIrH-eX8Z20PvpYJszzxELuU5X4Wmqzp70Fmu_XBzxd3Ze9CtVCbGyrlVopsW-YxsMJT6LkzDKSKOVEWMVoAQCYu_PPXbzqTyzGGfdrNFPnEem2kLYawg0RamaGY=s680-w680-h510-rw" alt="星廚饌—大竹店">
         <div class="card-content">
           <div class="card-title-row">
             <div class="restaurant-name">星廚饌—大竹店</div>
@@ -222,7 +222,7 @@
       </div>
 
       <div class="restaurant-card">
-        <img class="card-img" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80" alt="海賊日式料理">
+        <img class="card-img" src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlCPBxk8s9mymTCqz2HnGLjYbMRIsFeh4gfellh0tZFtRR86UwyHzuiix4uGNTnkxsMa6WFhL0vQjR6H2ioBST3DiWVGd8vO84Iu9HIefC7Yr4pqFx9IQD6NDkaKbCqONO6-7b8RWBHHVRb=w223-h279-n-k-no-nu" alt="海賊日式料理">
         <div class="card-content">
           <div class="card-title-row">
             <div class="restaurant-name">海賊日式料理</div>
@@ -239,7 +239,7 @@
       </div>
 
       <div class="restaurant-card">
-        <img class="card-img" src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80" alt="盈利廣東腸粉">
+        <img class="card-img" src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnO9szdo8doBd29O1Lo2XfaN0wPNI_vVg_cAK_xK4bPHjOmlUEmRdK8WipdYX7_vPzkVNgnN7UR4iLkeXDJXTezjLXV-x9Nxc61Jnw4RdKKySAK2LnwRZqw9oZtdTNg7uTUylFzRq2_0w-U=s680-w680-h510-rw" alt="盈利廣東腸粉">
         <div class="card-content">
           <div class="card-title-row">
             <div class="restaurant-name">盈利廣東腸粉</div>
@@ -256,7 +256,7 @@
       </div>
 
       <div class="restaurant-card">
-        <img class="card-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="哞先生 美式牛排 Mr. Moo">
+        <img class="card-img" src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmpyAhux1LGSiUKVuQLOlfmI8MsNgVkZU-azA2Xlicg_2ZEei36r8WjnIvjFaSh8-JB5siv_JrK4eiMGDxz-s1wwRxL30jKc5fAA7I-XXPDu-DJHdWWL9RICOJb_namEBAsKV1aE35N0rY=s680-w680-h510-rw" alt="哞先生 美式牛排 Mr. Moo">
         <div class="card-content">
           <div class="card-title-row">
             <div class="restaurant-name">哞先生 美式牛排 Mr. Moo</div>
@@ -273,7 +273,7 @@
       </div>
 
       <div class="restaurant-card">
-        <img class="card-img" src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=80" alt="協力香雞排(燿達店)">
+        <img class="card-img" src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnYqQ-jU7EiM8jXB7T_IpIkgLCS6EhUhl0TLX51HFksBvFVneinVURFqhRv4hJ0ViyKHvHyL0b_b3V6ikT-Fvy3YK-bcrTWmwW2gaKvPQ2vL-phKlQWSPShl4v7ATH36xh-VbTt=s680-w680-h510-rw" alt="協力香雞排(燿達店)">
         <div class="card-content">
           <div class="card-title-row">
             <div class="restaurant-name">協力香雞排 (燿達店)</div>
@@ -288,7 +288,24 @@
           </div>
         </div>
       </div>
-
+      
+      <div class="restaurant-card">
+        <img class="card-img" src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWk9Np8s93Yg6II3goxqdQL6usuh26iuSq-_xCWWbs3HIfGL5cD30hylZrvzlskvhELpeZ_SzxUV6STYAT4vx9iQFqZxG88JFGAYzf_O8W_imMk61MXCZNPgSaHxVHqdQcIOsbvCGA=s680-w680-h510-rw" alt="星廚饌—大竹店">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">和風熏品煙燻滷味</div>
+            <span class="badge">煙燻滷味</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>338桃園市蘆竹區新興里新興街66-1號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://share.google/uV5pTaTcsBHo2ru2v" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+      
     </div>
 
     <!-- ================= 元智周邊 ================= -->
@@ -485,6 +502,32 @@
       document.getElementById(tabId).classList.add('active');
       event.currentTarget.classList.add('active');
     }
+    // 切換頁籤功能
+  function switchTab(tabId) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.classList.remove('active'));
+
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById(tabId).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+  // 自動計算並更新每個區域的店家數量
+  function updateCounts() {
+    // 計算開南周邊卡片數量
+    const kainanCount = document.querySelectorAll('#kainan .restaurant-card').length;
+    const kainanBtn = document.getElementById('tab-btn-kainan');
+    if (kainanBtn) kainanBtn.innerText = `開南周邊 (${kainanCount})`;
+
+    // 計算元智周邊卡片數量
+    const yuanzeCount = document.querySelectorAll('#yuanze .restaurant-card').length;
+    const yuanzeBtn = document.getElementById('tab-btn-yuanze');
+    if (yuanzeBtn) yuanzeBtn.innerText = `元智周邊 (${yuanzeCount})`;
+  }
+
+  // 網頁載入完成後自動執行計算
+  window.onload = updateCounts;
   </script>
 </body>
 </html>
