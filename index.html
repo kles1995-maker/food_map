@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>桃園學區美食地圖（開南＆元智）</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f7fafc;
+      color: #2d3748;
+      padding: 16px 12px 50px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    /* 頁首標題 */
+    .header {
+      text-align: center;
+      padding: 16px 0 20px;
+    }
+
+    .header h1 {
+      font-size: 1.6rem;
+      color: #1a202c;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      font-size: 0.9rem;
+      color: #718096;
+    }
+
+    /* 區域切換頁籤 (Tabs) */
+    .tab-container {
+      display: flex;
+      background: #edf2f7;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px 0;
+      text-align: center;
+      border: none;
+      background: transparent;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #4a5568;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: #3182ce;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* 餐廳卡片 */
+    .restaurant-card {
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 16px;
+    }
+
+    .card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .restaurant-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2d3748;
+    }
+
+    .badge {
+      background-color: #ebf8ff;
+      color: #2b6cb0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      font-size: 0.88rem;
+      color: #4a5568;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    .info-icon {
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+
+    /* 按鈕 */
+    .action-group {
+      margin-top: 14px;
+    }
+
+    .btn-map {
+      display: block;
+      width: 100%;
+      padding: 10px 0;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background-color: #3182ce;
+      color: #ffffff;
+      transition: background-color 0.2s;
+    }
+
+    .btn-map:hover {
+      background-color: #2b6cb0;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #a0aec0;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="header">
+      <h1>📍 桃園美食口袋名單</h1>
+      <p>開南大學 ＆ 元智大學 周邊精選</p>
+    </div>
+
+    <!-- 頁籤按鈕 -->
+    <div class="tab-container">
+      <button class="tab-btn active" onclick="switchTab('kainan')">開南周邊 (6)</button>
+      <button class="tab-btn" onclick="switchTab('yuanze')">元智周邊 (10)</button>
+    </div>
+
+    <!-- ================= 開南周邊 ================= -->
+    <div id="kainan" class="tab-content active">
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=800&q=80" alt="龍鳳城港式燒臘快餐">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">龍鳳城港式燒臘快餐</div>
+            <span class="badge">港式燒臘</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>338桃園市蘆竹區上竹里大竹路296號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/BAQ8LjH42PTq2bSo7" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="星廚饌—大竹店">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">星廚饌—大竹店</div>
+            <span class="badge">台式美饌</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>338桃園市蘆竹區上竹里明德街2號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/uburgCdgAG47DSdM8" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80" alt="海賊日式料理">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">海賊日式料理</div>
+            <span class="badge">日式料理</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>338桃園市蘆竹區上竹里大竹路428-2號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/ULcGoBtCaVVpEpz16" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80" alt="盈利廣東腸粉">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">盈利廣東腸粉</div>
+            <span class="badge">特色小吃</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>338桃園市蘆竹區大竹里新福街292號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/DVWqeXsYH8MubsX96" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="哞先生 美式牛排 Mr. Moo">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">哞先生 美式牛排 Mr. Moo</div>
+            <span class="badge">美式牛排</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>338桃園市蘆竹區上竹里大竹路92-2號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/MNeQhqWwZQHZYUiVA" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=80" alt="協力香雞排(燿達店)">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">協力香雞排 (燿達店)</div>
+            <span class="badge">炸物宵夜</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>330桃園市桃園區西埔里永安路1238號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/t2xwezEVp456MT979" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= 元智周邊 ================= -->
+    <div id="yuanze" class="tab-content">
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Moon island 沐嶋 桃園旗艦店">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">Moon island 沐嶋 桃園旗艦店</div>
+            <span class="badge">質感網美店</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>330桃園市桃園區中山路1560號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/QYYiQ4Hs9C9GNB1N8" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=800&q=80" alt="mummum滿²">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">mummum 滿²</div>
+            <span class="badge">早午餐 / 咖啡</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>320桃園市中壢區興仁里興仁路二段73號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/ttrTWo9Y2XorHaXCA" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80" alt="清牛堂清燉牛肉麵-內壢店">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">清牛堂清燉牛肉麵-內壢店</div>
+            <span class="badge">牛肉麵</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>320桃園市中壢區中正里環中東路57號1樓</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/kUG2VBtkAY3ayxdr7" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="陳古早味小吃店">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">陳古早味小吃店</div>
+            <span class="badge">傳統小吃</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>320桃園市中壢區內壢里新華街88巷6號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/Q13S4EAHERgjxUjC6" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="好貳咖啡 x 熊空茶作">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">好貳咖啡 x 熊空茶作</div>
+            <span class="badge">咖啡特調 / 輕食</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>32043桃園市中壢區中央里元化路155號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/Shv2cGVoQFJq3PE19" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80" alt="蕭記東山鴨頭">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">蕭記東山鴨頭</div>
+            <span class="badge">夜市小吃 / 滷味</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>320桃園市中壢區成功路成功市場停車場旁</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/xGkpnU4xGX6DcZe17" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80" alt="夢回長安&陝西涼皮">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">夢回長安 & 陝西涼皮</div>
+            <span class="badge">陝西特色美食</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>320桃園市中壢區中正里榮安一街159號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/uCmBuPtxqBUaLt3QA" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80" alt="品手感披薩">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">品手感披薩</div>
+            <span class="badge">手工披薩</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>320桃園市中壢區自治里陸光二街3號1樓</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/5AdU1bKwcCEasNRa6" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80" alt="來我家吃pizza手工窯烤專賣店">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">來我家吃pizza 手工窯烤專賣店</div>
+            <span class="badge">窯烤披薩</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>320桃園市中壢區忠孝里元生三街182號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/DEvSqyPqv3iosx1V9" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="restaurant-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=800&q=80" alt="布里偷">
+        <div class="card-content">
+          <div class="card-title-row">
+            <div class="restaurant-name">布里偷</div>
+            <span class="badge">美墨料理 / 捲餅</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span>320桃園市中壢區成功里大華路120號</span>
+          </div>
+          <div class="action-group">
+            <a href="https://maps.app.goo.gl/9XuAenxJhjvy7TEd9" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      桃園學區美食地圖口袋名單 🍽️
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tabId) {
+      // 隱藏所有內容
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      // 重置所有按鈕樣式
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      // 顯示目標內容與設定按鈕狀態
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+</body>
+</html>
+
+.
+
