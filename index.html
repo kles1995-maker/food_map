@@ -180,9 +180,9 @@
 
     <!-- 頁籤按鈕 -->
     <div class="tab-container">
-  <button class="tab-btn" data-target="kainan" onclick="switchTab('kainan')">開南周邊</button>
-  <button class="tab-btn" data-target="yuanze" onclick="switchTab('yuanze')">元智周邊</button>
-  <button class="tab-btn" data-target="other" onclick="switchTab('other')">其他推薦</button>
+  <button class="tab-btn active" data-target="kainan" onclick="switchTab('kainan',this)">開南周邊</button>
+  <button class="tab-btn" data-target="yuanze" onclick="switchTab('yuanze',this)">元智周邊</button>
+  <button class="tab-btn" data-target="other" onclick="switchTab('other',this)">其他推薦</button>
 </div>
 
 
@@ -513,32 +513,33 @@
     </div>
   </div>
 
-  <script>
+ <script>
   // 切換頁籤功能
-  function switchTab(tabId, targetElement) {
-    // 隱藏所有內容
+  function switchTab(tabId, btnElement) {
+    // 1. 隱藏所有內容區塊
     const contents = document.querySelectorAll('.tab-content');
     contents.forEach(content => content.classList.remove('active'));
 
-    // 重置所有按鈕樣式
+    // 2. 移除所有按鈕的高亮樣式
     const buttons = document.querySelectorAll('.tab-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
 
-    // 顯示目標內容與設定按鈕狀態
+    // 3. 顯示目標內容區塊
     const targetContent = document.getElementById(tabId);
     if (targetContent) {
       targetContent.classList.add('active');
     }
 
-    if (targetElement) {
-      targetElement.classList.add('active');
+    // 4. 為當前點擊的按鈕加上高亮樣式
+    if (btnElement) {
+      btnElement.classList.add('active');
     }
 
-    // 💡 記憶關鍵：將當前點擊的 tabId 存進瀏覽器快取中
+    // 5. 儲存當前頁籤位置到瀏覽器記憶中
     localStorage.setItem('activeTab', tabId);
   }
 
-  // 自動抓取所有頁籤並計算數量
+  // 自動計算並更新數字
   function updateCounts() {
     const buttons = document.querySelectorAll('.tab-btn');
     
@@ -552,16 +553,16 @@
     });
   }
 
-  // 網頁載入完成時執行
+  // 網頁載入時自動處理
   window.addEventListener('DOMContentLoaded', () => {
-    // 1. 計算所有店家數量
+    // 自動計算數量
     updateCounts();
 
-    // 2. 讀取上次儲存的頁籤，如果沒有紀錄就預設為 'kainan'
+    // 讀取上次紀錄，若無紀錄則預設為 kainan
     const savedTab = localStorage.getItem('activeTab') || 'kainan';
-    
-    // 3. 找到對應的按鈕並觸發切換
     const targetBtn = document.querySelector(`.tab-btn[data-target="${savedTab}"]`);
+    
+    // 如果有找到儲存的頁籤按鈕，就切換過去並加上高亮
     if (targetBtn) {
       switchTab(savedTab, targetBtn);
     }
