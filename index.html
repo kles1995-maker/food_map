@@ -1049,21 +1049,7 @@
     });
   }
 
-<script>
-  // 💡 新增這個函數：自動抓取店名與地址生成地圖連結
-  function generateMapLinks() {
-    const cards = document.querySelectorAll('.restaurant-card');
-    cards.forEach(card => {
-      const nameEl = card.querySelector('.restaurant-name');
-      const addrEl = card.querySelector('.address-text');
-      const mapBtn = card.querySelector('.btn-map');
 
-      if (nameEl && addrEl && mapBtn) {
-        const query = encodeURIComponent(`${nameEl.innerText.trim()} ${addrEl.innerText.trim()}`);
-        mapBtn.href = `https://www.google.com/maps/search/?api=1&query=${query}`;
-      }
-    });
-  }
 
   // 頁面初始化
   window.addEventListener('DOMContentLoaded', () => {
