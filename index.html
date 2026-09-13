@@ -1046,16 +1046,6 @@
         const originalName = btn.innerText.replace(/\s*\(\d+\)/, '');
         btn.innerText = `${originalName} (${count})`;
       }
-
-  // 頁面初始化
-  window.addEventListener('DOMContentLoaded', () => {
-    generateMapLinks(); // 💡 執行自動生成
-    updateCounts();
-
-    const savedTab = localStorage.getItem('activeTab') || 'kainan';
-    const targetBtn = document.querySelector(`.tab-btn[data-target="${savedTab}"]`);
-    if (targetBtn) switchTab(savedTab, targetBtn);
-  });
 </script>
 
 
