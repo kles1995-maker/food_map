@@ -270,7 +270,7 @@
             <span>338桃園市蘆竹區大竹里新福街292號</span>
           </div>
           <div class="action-group">
-            <a href="https://maps.app.goo.gl/DVWqeXsYH8MubsX96" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+            <a href="#" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
           </div>
         </div>
       </div>
@@ -287,7 +287,7 @@
         <span>338桃園市蘆竹區上興里大竹路445號</span>
       </div>
       <div class="action-group">
-        <a href="https://maps.app.goo.gl/jBieho8xNV4iTPBUA?g_st=com.google.maps.preview.copy" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+        <a href="#" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
       </div>
     </div>
   </div>
@@ -321,7 +321,7 @@
         <span>338桃園市蘆竹區上竹里大竹路428-3號</span>
       </div>
       <div class="action-group">
-        <a href="https://maps.app.goo.gl/dRKmZy1paB3SxYLT8?g_st=com.google.maps.preview.copy" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+        <a href="#" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
       </div>
     </div>
   </div>
@@ -338,7 +338,7 @@
         <span>338桃園市蘆竹區中福里大福路218號</span>
       </div>
       <div class="action-group">
-        <a href="https://maps.app.goo.gl/oBfM6QTK29tY4TWE9?g_st=com.google.maps.preview.copy" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
+        <a href="#" target="_blank" class="btn-map">🗺️ 開啟 Google 地圖</a>
       </div>
     </div>
   </div>
@@ -1048,6 +1048,34 @@
       }
     });
   }
+
+<script>
+  // 💡 新增這個函數：自動抓取店名與地址生成地圖連結
+  function generateMapLinks() {
+    const cards = document.querySelectorAll('.restaurant-card');
+    cards.forEach(card => {
+      const nameEl = card.querySelector('.restaurant-name');
+      const addrEl = card.querySelector('.address-text');
+      const mapBtn = card.querySelector('.btn-map');
+
+      if (nameEl && addrEl && mapBtn) {
+        const query = encodeURIComponent(`${nameEl.innerText.trim()} ${addrEl.innerText.trim()}`);
+        mapBtn.href = `https://www.google.com/maps/search/?api=1&query=${query}`;
+      }
+    });
+  }
+
+  // 頁面初始化
+  window.addEventListener('DOMContentLoaded', () => {
+    generateMapLinks(); // 💡 執行自動生成
+    updateCounts();
+
+    const savedTab = localStorage.getItem('activeTab') || 'kainan';
+    const targetBtn = document.querySelector(`.tab-btn[data-target="${savedTab}"]`);
+    if (targetBtn) switchTab(savedTab, targetBtn);
+  });
+</script>
+
 
   // 網頁載入時自動處理
   window.addEventListener('DOMContentLoaded', () => {
